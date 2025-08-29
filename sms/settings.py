@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'students'
+    'students',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -69,7 +70,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sms.wsgi.application'
 
-
+LOGIN_URL ="login"
+LOGIN_REDIRECT_URL = 'home'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
