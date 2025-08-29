@@ -22,7 +22,7 @@ class Student(models.Model):
   last_name = models.CharField(max_length=80)
   email = models.EmailField(unique=True)
   dob = models.DateField()
-  metadata = models.ManyToManyField(Metadata, blank=True, related_name='students')
+  metadata = models.ManyToManyField(Metadata,through='StudentMetadata', blank=True, related_name='students')
 
   class Meta:
     indexes = [models.Index(fields=['last_name', "first_name"])]
@@ -33,6 +33,18 @@ class Student(models.Model):
 
   def __str__(self):
     return f"{self.first_name} {self.last_name}"
+
+class StudentMetadata(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    metadata = models.ForeignKey(Metadata, on_delete=models.CASCADE)
+    notes = models.TextField(blank=True)
+    assigned_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('student', 'metadata')
+
+    def __str__(self):
+        return f"{self.student} - {self.metadata.key}"
 
 
 class Course(models.Model):
@@ -68,7 +80,7 @@ class Enrollment(models.Model):
   student= models.ForeignKey(Student, on_delete= models.CASCADE , related_name= 'enrollments')
   course= models.ForeignKey(Course, on_delete= models.CASCADE , related_name= 'enrollments')
   grade = models.CharField(max_length=2, choices=GRADE_CHOICES, blank=True)
-  metadata = models.ManyToManyField(Metadata, blank=True, related_name="enrollments")
+  metadata = models.ManyToManyField(Metadata, through='EnrollmentMetadata', blank=True, related_name="enrollments")
 
   class Meta:
         constraints = [
@@ -77,5 +89,17 @@ class Enrollment(models.Model):
 
   def __str__(self):
         return f"{self.student} in {self.course}"
+
+class EnrollmentMetadata(models.Model):
+    enrollment = models.ForeignKey(Enrollment, on_delete=models.CASCADE)
+    metadata = models.ForeignKey(Metadata, on_delete=models.CASCADE)
+    notes = models.TextField(blank=True)
+    assigned_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('enrollment', 'metadata')
+
+    def __str__(self):
+        return f"{self.enrollment} - {self.metadata.key}"
 
 

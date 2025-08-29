@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Courses</h1>
+{% if user.is_authenticated %}
+  <p><a href="{% url 'course_create' %}">+ Add Course</a></p>
+{% endif %}
+<table border="1">
+  <tr><th>Code</th><th>Name</th><th>Actions</th></tr>
+  {% for c in object_list %}
+  <tr>
+    <td><a href="{% url 'course_detail' c.pk %}">{{ c.course_code }}</a></td>
+    <td>{{ c.name }}</td>
+    <td>
+      {% if user.is_authenticated %}
+        <a href="{% url 'course_edit' c.pk %}">Edit</a> |
+        <a class="confirm-delete" href="{% url 'course_delete' c.pk %}">Delete</a>
+      {% endif %}
+    </td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="3">No courses</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

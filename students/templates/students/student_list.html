@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Students</h1>
+<form method="get" class="filters">
+  <input type="text" name="q" placeholder="Search name or email" value="{{ request.GET.q }}">
+  <input type="text" name="meta_key" placeholder="Metadata key" value="{{ request.GET.meta_key }}">
+  <input type="text" name="meta_val" placeholder="Metadata value" value="{{ request.GET.meta_val }}">
+  <button type="submit">Filter</button>
+</form>
+{% if user.is_authenticated %}
+  <p><a href="{% url 'student_create' %}">Add Student</a></p>
+{% endif %}
+<table>
+  <thead><tr><th>Name</th><th>Email</th><th>DOB</th><th></th></tr></thead>
+  <tbody>
+  {% for s in object_list %}
+    <tr>
+      <td><a href="{% url 'student_detail' s.pk %}">{{ s.first_name }} {{ s.last_name }}</a></td>
+      <td>{{ s.email }}</td>
+      <td>{{ s.dob }}</td>
+      <td>{% if user.is_authenticated %}
+        <a href="{% url 'student_edit' s.pk %}">Edit</a> |
+        <a class="confirm-delete" href="{% url 'student_delete' s.pk %}">Delete</a>
+      {% endif %}</td>
+    </tr>
+  {% empty %}
+    <tr><td colspan="4">No students yet.</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<div class="pager">
+  {% if is_paginated %}
+    {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}&{{ request.GET.urlencode }}">Prev</a>{% endif %}
+    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}&{{ request.GET.urlencode }}">Next</a>{% endif %}
+  {% endif %}
+</div>
+{% endblock %}
