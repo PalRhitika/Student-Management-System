@@ -79,6 +79,7 @@ class Enrollment(models.Model):
     ]
   student= models.ForeignKey(Student, on_delete= models.CASCADE , related_name= 'enrollments')
   course= models.ForeignKey(Course, on_delete= models.CASCADE , related_name= 'enrollments')
+  exam_score = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
   grade = models.CharField(max_length=2, choices=GRADE_CHOICES, blank=True)
   metadata = models.ManyToManyField(Metadata, through='EnrollmentMetadata', blank=True, related_name="enrollments")
 

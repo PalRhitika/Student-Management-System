@@ -3,7 +3,13 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
 from .models import Student, Course, Instructor, Enrollment, Metadata
-from .forms import StudentForm, CourseForm, InstructorForm, EnrollmentForm, MetadataForm
+from .forms import StudentForm, CourseForm, InstructorForm, EnrollmentForm, MetadataForm, StudentMetadataFormSet
+from django.shortcuts import redirect, render
+class MetadataCreateView(LoginRequiredMixin, CreateView):
+    model = Metadata
+    form_class = MetadataForm
+    template_name = "metadata/metadata_form.html"
+    success_url = reverse_lazy("home")
 
 class SearchPaginateListView(ListView):
     paginate_by = 10
@@ -30,16 +36,43 @@ class StudentListView(SearchPaginateListView):
     model = Student
     search_fields = ["first_name", "last_name", "email", "metadata"]
     template_name = "students/student_list.html"
+    context_object_name = "students"
+
+    def get_queryset(self):
+        # Optional: add ordering
+        return Student.objects.prefetch_related('studentmetadata_set__metadata').order_by('last_name', 'first_name')
 
 class StudentDetailView(DetailView):
     model = Student
     template_name = "students/student_detail.html"
+
+
+
 
 class StudentCreateView(LoginRequiredMixin, CreateView):
     model = Student
     form_class = StudentForm
     template_name = "students/student_form.html"
     success_url = reverse_lazy("student_list")
+
+    def get(self, request, *args, **kwargs):
+        self.object = None
+        form = self.get_form()
+        formset = StudentMetadataFormSet()
+        return render(request, self.template_name, {"form": form, "formset": formset})
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form = self.get_form()
+        formset = StudentMetadataFormSet(self.request.POST)
+
+        if form.is_valid() and formset.is_valid():
+            student = form.save()
+            formset.instance = student
+            formset.save()
+            return redirect(self.success_url)
+
+        return render(request, self.template_name, {"form": form, "formset": formset})
 
 
 
@@ -48,10 +81,28 @@ class StudentUpdateView(LoginRequiredMixin, UpdateView):
     form_class = StudentForm
     template_name = "students/student_form.html"
     success_url = reverse_lazy("student_list")
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        formset = StudentMetadataFormSet(instance=self.object)
+        return render(request, self.template_name, {"form": form, "formset": formset})
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        formset = StudentMetadataFormSet(self.request.POST, instance=self.object)
+
+        if form.is_valid() and formset.is_valid():
+            student = form.save()
+            formset.instance = student
+            formset.save()
+            return redirect(self.success_url)
+
+        return render(request, self.template_name, {"form": form, "formset": formset})
 
 class StudentDeleteView(LoginRequiredMixin, DeleteView):
     model = Student
-    template_name = "students/confirm_delete.html"
+    template_name = "students/student_delete.html"
     success_url = reverse_lazy("student_list")
 
 # Course
@@ -135,9 +186,4 @@ class EnrollmentDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "enrollments/confirm_delete.html"
     success_url = reverse_lazy("enrollment_list")
 
-# Metadata quick create
-class MetadataCreateView(LoginRequiredMixin, CreateView):
-    model = Metadata
-    form_class = MetadataForm
-    template_name = "metadata/metadata_form.html"
-    success_url = reverse_lazy("home")
+

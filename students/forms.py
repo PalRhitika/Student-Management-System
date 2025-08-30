@@ -1,6 +1,7 @@
 from django import forms
 from .models import Student, Course, Instructor, Enrollment, Metadata, StudentMetadata
 from django.forms import inlineformset_factory
+
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student

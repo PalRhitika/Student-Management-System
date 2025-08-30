@@ -1,9 +1,111 @@
 {% extends "base.html" %}
+{% load form_tags %}
 {% block content %}
-<h2>{{ view.object|default:"New Student" }}</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Save</button>
-</form>
+<div class="container my-5">
+
+  <h2 class="mb-4">{{ view.object|default:"New Student" }}</h2>
+
+  <form method="post">
+    {% csrf_token %}
+
+    <!-- Student Information -->
+    <fieldset class="mb-4 p-4 border rounded shadow-sm bg-light">
+      <legend class="h5 mb-3">Student Information</legend>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="{{ form.first_name.id_for_label }}" class="form-label">First Name</label>
+          {{ form.first_name|add_class:"form-control" }}
+        </div>
+        <div class="col-md-6">
+          <label for="{{ form.last_name.id_for_label }}" class="form-label">Last Name</label>
+          {{ form.last_name|add_class:"form-control" }}
+        </div>
+        <div class="col-md-6">
+          <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+          {{ form.email|add_class:"form-control" }}
+        </div>
+        <div class="col-md-6">
+          <label for="{{ form.dob.id_for_label }}" class="form-label">Date of Birth</label>
+          {{ form.dob|add_class:"form-control" }}
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Extra Metadata -->
+    <fieldset class="mb-4 p-4 border rounded shadow-sm bg-light">
+      <legend class="h5 mb-3">Extra Metadata</legend>
+
+      {{ formset.management_form }}
+
+      <div id="metadata-forms">
+        {% for subform in formset %}
+          <div class="card mb-3 metadata-form p-3">
+            <div class="row g-3 align-items-end">
+              <div class="col-md-6">
+                <label for="{{ subform.metadata.id_for_label }}" class="form-label">Metadata Key</label>
+                {{ subform.metadata|add_class:"form-select" }}
+              </div>
+              <div class="col-md-5">
+                <label for="{{ subform.notes.id_for_label }}" class="form-label">Notes</label>
+                {{ subform.notes|add_class:"form-control" }}
+              </div>
+              <div class="col-md-1 text-end">
+                {% if formset.can_delete %}
+                  <button type="button" class="btn btn-danger btn-sm" onclick="removeMetadataForm(this)">×</button>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <p class="text-muted">No metadata yet. Add some!</p>
+        {% endfor %}
+      </div>
+
+      <!-- Hidden empty form -->
+      <div id="empty-form" style="display:none;">
+        <div class="card mb-3 metadata-form p-3">
+          <div class="row g-3 align-items-end">
+            <div class="col-md-6">
+              <label class="form-label">Metadata Key</label>
+              {{ formset.empty_form.metadata|add_class:"form-select" }}
+            </div>
+            <div class="col-md-5">
+              <label class="form-label">Notes</label>
+              {{ formset.empty_form.notes|add_class:"form-control" }}
+            </div>
+            <div class="col-md-1 text-end">
+              <button type="button" class="btn btn-danger btn-sm" onclick="removeMetadataForm(this)">×</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary btn-sm mt-2" onclick="addMetadataForm()">+ Add Metadata</button>
+    </fieldset>
+
+    <button type="submit" class="btn btn-success btn-lg">Save Student</button>
+  </form>
+</div>
+
+<script>
+  function addMetadataForm() {
+    const totalForms = document.getElementById("id_studentmetadata_set-TOTAL_FORMS");
+    const currentCount = parseInt(totalForms.value);
+
+    const emptyFormDiv = document.getElementById("empty-form").innerHTML;
+    const newFormHtml = emptyFormDiv.replace(/__prefix__/g, currentCount);
+
+    document.getElementById("metadata-forms").insertAdjacentHTML("beforeend", newFormHtml);
+
+    totalForms.value = currentCount + 1;
+  }
+
+  function removeMetadataForm(btn) {
+    const formCard = btn.closest(".metadata-form");
+    formCard.remove();
+
+    const totalForms = document.getElementById("id_studentmetadata_set-TOTAL_FORMS");
+    totalForms.value = parseInt(totalForms.value) - 1;
+  }
+</script>
 {% endblock %}

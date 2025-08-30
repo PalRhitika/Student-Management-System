@@ -1,5 +1,61 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Welcome to the School Management System</h1>
-<p>Use the navigation bar to manage students, courses, instructors, and enrollments.</p>
+<div class="container my-5">
+
+  <!-- Hero Section -->
+  <div class="text-center mb-5">
+    <h1 class="display-5 fw-bold">Welcome to the School Management System - NSDevil Assessment</h1>
+    <p class="lead text-muted">Easily manage students, courses, instructors, and enrollments in one place.</p>
+    {% if user.is_authenticated %}
+      <a href="{% url 'student_list' %}" class="btn btn-primary btn-lg me-2">Manage Students</a>
+      <a href="{% url 'course_list' %}" class="btn btn-success btn-lg me-2">Manage Courses</a>
+      <a href="{% url 'instructor_list' %}" class="btn btn-warning btn-lg">Manage Instructors</a>
+    {% else %}
+      <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Login to Get Started</a>
+    {% endif %}
+  </div>
+
+  <!-- Quick Overview Section -->
+  <div class="row text-center g-4">
+    <div class="col-md-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Students</h5>
+          <p class="card-text text-muted">View, add, and manage all students.</p>
+          <a href="{% url 'student_list' %}" class="btn btn-outline-primary btn-sm">Go to Students</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Courses</h5>
+          <p class="card-text text-muted">Create and manage courses offered by the school.</p>
+          <a href="{% url 'course_list' %}" class="btn btn-outline-success btn-sm">Go to Courses</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Instructors</h5>
+          <p class="card-text text-muted">Manage instructor profiles and assignments.</p>
+          <a href="{% url 'instructor_list' %}" class="btn btn-outline-warning btn-sm">Go to Instructors</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Enrollments</h5>
+          <p class="card-text text-muted">Track student enrollments and course participation.</p>
+          <a href="{% url 'enrollment_list' %}" class="btn btn-outline-info btn-sm">Go to Enrollments</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
 {% endblock %}
