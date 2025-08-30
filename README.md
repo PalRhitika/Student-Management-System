@@ -86,6 +86,10 @@ python manage.py loaddata seed.json
 
 ## Some Glimpse of the System
 
+### Home Page
+![Homes Page](screenshots/homepage.PNG)
+
+
 ### Login Page
 ![Login Page](screenshots/login.PNG)
 
@@ -112,7 +116,7 @@ python manage.py loaddata seed.json
 
 - **Guest Users:** Can view lists and details of Students, Courses, Instructors, and Enrollments without logging in.
 - **Superuser:** Can create, update, delete, and manage all entities including Metadata.
-- **Navigation:** Use the top menu or dashboard cards to access Students, Courses, Instructors, and Enrollments.
+- **Navigation:** Use the top menu or homepage cards to access Students, Courses, Instructors, and Enrollments.
 - **Search & Pagination:** Quickly filter and browse records in list views.
 - **Charts:** Visualize academic performance through charts in the Student detail pages.
 
