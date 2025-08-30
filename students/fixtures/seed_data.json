@@ -1,0 +1,484 @@
+[
+  {
+    "model": "students.metadata",
+    "pk": 1,
+    "fields": {
+      "key": "hobby",
+      "value": "Basketball",
+      "created_at": "2025-01-01T10:00:00Z",
+      "updated_at": "2025-01-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "students.metadata",
+    "pk": 2,
+    "fields": {
+      "key": "club",
+      "value": "Science Club",
+      "created_at": "2025-01-02T10:00:00Z",
+      "updated_at": "2025-01-02T10:00:00Z"
+    }
+  },
+  {
+    "model": "students.metadata",
+    "pk": 3,
+    "fields": {
+      "key": "sports",
+      "value": "Football",
+      "created_at": "2025-01-03T10:00:00Z",
+      "updated_at": "2025-01-03T10:00:00Z"
+    }
+  },
+  {
+    "model": "students.metadata",
+    "pk": 4,
+    "fields": {
+      "key": "language",
+      "value": "French",
+      "created_at": "2025-01-04T10:00:00Z",
+      "updated_at": "2025-01-04T10:00:00Z"
+    }
+  },
+  {
+    "model": "students.metadata",
+    "pk": 5,
+    "fields": {
+      "key": "scholarship",
+      "value": "Merit-Based",
+      "created_at": "2025-01-05T10:00:00Z",
+      "updated_at": "2025-01-05T10:00:00Z"
+    }
+  },
+  {
+    "model": "students.metadata",
+    "pk": 6,
+    "fields": {
+      "key": "attendance",
+      "value": "95%",
+      "created_at": "2025-01-06T10:00:00Z",
+      "updated_at": "2025-01-06T10:00:00Z"
+    }
+  },
+  {
+    "model": "students.metadata",
+    "pk": 7,
+    "fields": {
+      "key": "mentor",
+      "value": "Dr. Smith",
+      "created_at": "2025-01-07T10:00:00Z",
+      "updated_at": "2025-01-07T10:00:00Z"
+    }
+  },
+  {
+    "model": "students.metadata",
+    "pk": 8,
+    "fields": {
+      "key": "award",
+      "value": "Math Olympiad",
+      "created_at": "2025-01-08T10:00:00Z",
+      "updated_at": "2025-01-08T10:00:00Z"
+    }
+  },
+  {
+    "model": "students.metadata",
+    "pk": 9,
+    "fields": {
+      "key": "grade_level",
+      "value": "Sophomore",
+      "created_at": "2025-01-09T10:00:00Z",
+      "updated_at": "2025-01-09T10:00:00Z"
+    }
+  },
+  {
+    "model": "students.metadata",
+    "pk": 10,
+    "fields": {
+      "key": "parent_contact",
+      "value": "parent@example.com",
+      "created_at": "2025-01-10T10:00:00Z",
+      "updated_at": "2025-01-10T10:00:00Z"
+    }
+  },
+
+  {
+    "model": "students.student",
+    "pk": 1,
+    "fields": {
+      "first_name": "Alice",
+      "last_name": "Johnson",
+      "email": "alice@example.com",
+      "dob": "2005-04-12",
+      "metadata": [1, 2]
+    }
+  },
+  {
+    "model": "students.student",
+    "pk": 2,
+    "fields": {
+      "first_name": "Bob",
+      "last_name": "Miller",
+      "email": "bob@example.com",
+      "dob": "2004-09-23",
+      "metadata": [3]
+    }
+  },
+  {
+    "model": "students.student",
+    "pk": 3,
+    "fields": {
+      "first_name": "Clara",
+      "last_name": "Nguyen",
+      "email": "clara@example.com",
+      "dob": "2006-01-05",
+      "metadata": [4, 5]
+    }
+  },
+  {
+    "model": "students.student",
+    "pk": 4,
+    "fields": {
+      "first_name": "David",
+      "last_name": "Garcia",
+      "email": "david@example.com",
+      "dob": "2005-07-19",
+      "metadata": [6]
+    }
+  },
+  {
+    "model": "students.student",
+    "pk": 5,
+    "fields": {
+      "first_name": "Eva",
+      "last_name": "Lee",
+      "email": "eva@example.com",
+      "dob": "2004-12-30",
+      "metadata": [7, 8]
+    }
+  },
+  {
+    "model": "students.student",
+    "pk": 6,
+    "fields": {
+      "first_name": "Frank",
+      "last_name": "Hernandez",
+      "email": "frank@example.com",
+      "dob": "2005-02-22",
+      "metadata": [9]
+    }
+  },
+  {
+    "model": "students.student",
+    "pk": 7,
+    "fields": {
+      "first_name": "Grace",
+      "last_name": "Smith",
+      "email": "grace@example.com",
+      "dob": "2006-03-15",
+      "metadata": [10]
+    }
+  },
+  {
+    "model": "students.student",
+    "pk": 8,
+    "fields": {
+      "first_name": "Henry",
+      "last_name": "Khan",
+      "email": "henry@example.com",
+      "dob": "2005-06-02",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.student",
+    "pk": 9,
+    "fields": {
+      "first_name": "Ivy",
+      "last_name": "Patel",
+      "email": "ivy@example.com",
+      "dob": "2004-10-10",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.student",
+    "pk": 10,
+    "fields": {
+      "first_name": "Jack",
+      "last_name": "Wong",
+      "email": "jack@example.com",
+      "dob": "2005-08-18",
+      "metadata": []
+    }
+  },
+
+
+  {
+    "model": "students.course",
+    "pk": 1,
+    "fields": {
+      "course_name": "Mathematics",
+      "course_code": "MATH101",
+      "description": "Introductory Mathematics",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.course",
+    "pk": 2,
+    "fields": {
+      "course_name": "Physics",
+      "course_code": "PHYS101",
+      "description": "Basic Physics",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.course",
+    "pk": 3,
+    "fields": {
+      "course_name": "Chemistry",
+      "course_code": "CHEM101",
+      "description": "Basic Chemistry",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.course",
+    "pk": 4,
+    "fields": {
+      "course_name": "English Literature",
+      "course_code": "ENG101",
+      "description": "Introduction to English Literature",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.course",
+    "pk": 5,
+    "fields": {
+      "course_name": "Computer Science",
+      "course_code": "CS101",
+      "description": "Fundamentals of Programming",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.course",
+    "pk": 6,
+    "fields": {
+      "course_name": "History",
+      "course_code": "HIS101",
+      "description": "World History Overview",
+      "metadata": []
+    }
+  },
+
+
+  {
+    "model": "students.instructor",
+    "pk": 1,
+    "fields": {
+      "first_name": "Sophia",
+      "last_name": "Brown",
+      "email": "sophia.brown@example.com",
+      "courses": [1, 2]
+    }
+  },
+  {
+    "model": "students.instructor",
+    "pk": 2,
+    "fields": {
+      "first_name": "Liam",
+      "last_name": "Wilson",
+      "email": "liam.wilson@example.com",
+      "courses": [3, 4]
+    }
+  },
+  {
+    "model": "students.instructor",
+    "pk": 3,
+    "fields": {
+      "first_name": "Olivia",
+      "last_name": "Martinez",
+      "email": "olivia.martinez@example.com",
+      "courses": [5]
+    }
+  },
+  {
+    "model": "students.instructor",
+    "pk": 4,
+    "fields": {
+      "first_name": "Noah",
+      "last_name": "Davis",
+      "email": "noah.davis@example.com",
+      "courses": [6]
+    }
+  },
+
+
+  {
+    "model": "students.enrollment",
+    "pk": 1,
+    "fields": {
+      "student": 1,
+      "course": 1,
+      "exam_score": 89,
+      "grade": "A",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.enrollment",
+    "pk": 2,
+    "fields": {
+      "student": 2,
+      "course": 2,
+      "exam_score": 76,
+      "grade": "B",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.enrollment",
+    "pk": 3,
+    "fields": {
+      "student": 3,
+      "course": 3,
+      "exam_score": 92,
+      "grade": "A",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.enrollment",
+    "pk": 4,
+    "fields": {
+      "student": 4,
+      "course": 4,
+      "exam_score": 65,
+      "grade": "C",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.enrollment",
+    "pk": 5,
+    "fields": {
+      "student": 5,
+      "course": 5,
+      "exam_score": 98,
+      "grade": "A",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.enrollment",
+    "pk": 6,
+    "fields": {
+      "student": 6,
+      "course": 6,
+      "exam_score": 70,
+      "grade": "B",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.enrollment",
+    "pk": 7,
+    "fields": {
+      "student": 7,
+      "course": 1,
+      "exam_score": 88,
+      "grade": "A",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.enrollment",
+    "pk": 8,
+    "fields": {
+      "student": 8,
+      "course": 2,
+      "exam_score": 73,
+      "grade": "C",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.enrollment",
+    "pk": 9,
+    "fields": {
+      "student": 9,
+      "course": 3,
+      "exam_score": 81,
+      "grade": "B",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.enrollment",
+    "pk": 10,
+    "fields": {
+      "student": 10,
+      "course": 4,
+      "exam_score": 60,
+      "grade": "D",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.enrollment",
+    "pk": 11,
+    "fields": {
+      "student": 1,
+      "course": 5,
+      "exam_score": 95,
+      "grade": "A",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.enrollment",
+    "pk": 12,
+    "fields": {
+      "student": 2,
+      "course": 6,
+      "exam_score": 78,
+      "grade": "B",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.enrollment",
+    "pk": 13,
+    "fields": {
+      "student": 3,
+      "course": 1,
+      "exam_score": 84,
+      "grade": "B",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.enrollment",
+    "pk": 14,
+    "fields": {
+      "student": 4,
+      "course": 2,
+      "exam_score": 67,
+      "grade": "C",
+      "metadata": []
+    }
+  },
+  {
+    "model": "students.enrollment",
+    "pk": 15,
+    "fields": {
+      "student": 5,
+      "course": 3,
+      "exam_score": 91,
+      "grade": "A",
+      "metadata": []
+    }
+  }
+]
