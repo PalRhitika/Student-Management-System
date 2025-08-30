@@ -28,7 +28,7 @@ It includes  CRUD functionalities, basic auth, search with pagination and charts
 1. **Clone the repository**
    ```bash
    git clone https://github.com/PalRhitika/Student-Management-System.git
-   cd student-management
+   cd Student-Management-System
    ```
 
 2. **Create virtual environment**
