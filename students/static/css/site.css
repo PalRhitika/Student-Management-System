@@ -1,0 +1,35 @@
+a:hover , .btn:hover{
+  color:white !important;
+}
+.actionbtn:hover{
+  color: black !important;
+}
+.nav-item{
+  position:relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transition: width 0.3s ease-in-out;
+}
+
+.nav-link:hover::after , .nav-link.active::after {
+  width: 100%;
+}
+
+
+ .btn-gradient {
+    background: linear-gradient(90deg, #46e5e5, #3da1f3);
+    color: white;
+    border: none;
+  }
+  .btn-gradient:hover {
+    background: linear-gradient(90deg, #1e8df5, #21bff0);
+  }
+

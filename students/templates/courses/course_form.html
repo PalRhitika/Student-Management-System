@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% load form_tags %}
-
 {% block content %}
 <div class="container my-5">
-  <h2 class="mb-4">{{ view.object|default:"New Student" }}</h2>
+  <h2 class="mb-4">{{ view.object.course_name|default:"New Course" }}</h2>
 
   {% if form.errors %}
   <div class="alert alert-danger">
@@ -21,23 +20,24 @@
   </div>
   {% endif %}
 
- <form method="post" action="{% if view.object %}{% url 'student_edit' view.object.id %}{% else %}{% url 'student_create' %}{% endif %}">
-
+ <form method="post" action="{% if view.object %}{% url 'course_edit' view.object.pk %}{% else %}{% url 'course_create' %}{% endif %}">
     {% csrf_token %}
-
-    <!-- Student Info -->
     <fieldset class="mb-4 p-4 border rounded shadow-sm bg-light">
-      <legend class="h5 mb-3">Student Information</legend>
-      <div class="row g-3">
-        <div class="col-md-6">{{ form.first_name|add_class:"form-control" }}</div>
-        <div class="col-md-6">{{ form.last_name|add_class:"form-control" }}</div>
-        <div class="col-md-6">{{ form.email|add_class:"form-control" }}</div>
-        <div class="col-md-6">{{ form.dob|add_class:"form-control" }}</div>
+      <legend class="h5 mb-3">Course Details</legend>
+      <div class="mb-3">
+        <label class="form-label">Course Name</label>
+        {{ form.course_name|add_class:"form-control" }}
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Course Code</label>
+        {{ form.course_code|add_class:"form-control" }}
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        {{ form.description|add_class:"form-control" }}
       </div>
     </fieldset>
-
-
-    <!-- Metadata -->
+        <!-- Metadata -->
     <fieldset class="mb-4 p-4 border rounded shadow-sm bg-light">
   <legend class="h5 mb-3">Other Details</legend>
 
@@ -63,10 +63,9 @@
   </div>
 </fieldset>
 
-
     <div class="d-flex justify-content-start" style="gap:20px">
-      <button type="submit" class="btn btn-gradient tn-md">Save Student</button>
-      <a href="{% url 'student_list' %}" class="btn btn-outline-secondary text-secondary btn-md">Cancel</a>
+      <button type="submit" class="btn btn-gradient btn-md">Save Course</button>
+      <a href="{% url 'course_list' %}" class="btn btn-outline-secondary text-secondary btn-md">Cancel</a>
     </div>
   </form>
 </div>

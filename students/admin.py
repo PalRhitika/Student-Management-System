@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Student, Course, Instructor, Enrollment, Metadata, StudentMetadata
+from .models import Student, Course, Instructor, Enrollment, Metadata
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
     list_display = ("first_name", "last_name", "email")
@@ -21,4 +21,4 @@ class EnrollmentAdmin(admin.ModelAdmin):
     search_fields = ("student__first_name", "student__last_name", "course__course_code")
 
 admin.site.register(Metadata)
-admin.site.register(StudentMetadata)
+

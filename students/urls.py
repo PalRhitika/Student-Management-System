@@ -33,7 +33,10 @@ urlpatterns = [
     path("enrollments/<int:pk>/delete/", views.EnrollmentDeleteView.as_view(), name="enrollment_delete"),
 
     # Metadata plain create for quick attach
+    path("metadata/", views.MetadataListView.as_view(), name="metadata_list"),
     path("metadata/create/", views.MetadataCreateView.as_view(), name="metadata_create"),
+    path("metadata/<int:pk>/update/", views.MetadataUpdateView.as_view(), name="metadata_edit"),
+    path("metadata/<int:pk>/delete/", views.MetadataDeleteView.as_view(), name="metadata_delete"),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

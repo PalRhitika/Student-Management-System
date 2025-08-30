@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load form_tags %}
+{% block content %}
+<div class="container my-5">
+  <h2 class="mb-4">{{ view.object|default:"New Enrollment" }}</h2>
+
+  {% if form.errors %}
+  <div class="alert alert-danger">
+    <strong>Please fix the following errors:</strong>
+    <ul>
+      {% for field in form %}
+        {% for error in field.errors %}
+          <li>{{ field.label }}: {{ error }}</li>
+        {% endfor %}
+      {% endfor %}
+      {% for error in form.non_field_errors %}
+        <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+
+  <form method="post" action="{% if view.object %}{% url 'enrollment_edit' view.object.pk %}{% else %}{% url 'enrollment_create' %}{% endif %}">
+    {% csrf_token %}
+
+    <!-- Basic Details -->
+    <fieldset class="mb-4 p-4 border rounded shadow-sm bg-light">
+      <legend class="h5 mb-3">Basic Details</legend>
+
+      <div class="mb-3">
+        <label class="form-label">Student</label>
+        {{ form.student|add_class:"form-select form-select-lg" }}
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Course</label>
+        {{ form.course|add_class:"form-select form-select-lg" }}
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Grade</label>
+          {{ form.grade|add_class:"form-select" }}
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Exam Score</label>
+          {{ form.exam_score|add_class:"form-control" }}
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Metadata -->
+    <fieldset class="mb-4 p-4 border rounded shadow-sm bg-light">
+      <legend class="h5 mb-3">Metadata</legend>
+
+      {% if form.metadata and form.metadata.field.queryset.exists %}
+        <div class="row row-cols-1 row-cols-md-2 g-3">
+          {% for checkbox in form.metadata %}
+            <div class="col">
+              <div class="form-check">
+                {{ checkbox.tag }}
+                <label class="form-check-label" for="{{ checkbox.id_for_label }}">
+                  {{ checkbox.choice_label }}
+                </label>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="alert alert-info text-center mb-0 py-2">
+          No metadata available. Please add some from the Metadata section.
+        </div>
+      {% endif %}
+    </fieldset>
+
+    <button type="submit" class="btn btn-gradientsbtn-md">
+      Save Enrollment
+    </button>
+  </form>
+</div>
+{% endblock %}

@@ -2,8 +2,26 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-3">
   <h2>Student List</h2>
-  <a href="{% url 'student_create' %}" class="btn btn-success">Add Student</a>
+  {% if user.is_authenticated %}
+    <a href="{% url 'student_create' %}" class="btn btn-gradient">Add Student</a>
+  {% endif %}
 </div>
+
+<!-- Search & Filter Form -->
+<form method="get" class="row g-3 mb-4">
+  <div class="col-md-4">
+    <input type="text" name="q" value="{{ request.GET.q }}" class="form-control" placeholder="Search by name or email or DOBs">
+  </div>
+  <div class="col-md-3">
+    <input type="text" name="meta_key" value="{{ request.GET.meta_key }}" class="form-control" placeholder="Metadata Key">
+  </div>
+  <div class="col-md-3">
+    <input type="text" name="meta_val" value="{{ request.GET.meta_val }}" class="form-control" placeholder="Metadata Value">
+  </div>
+  <div class="col-md-2">
+    <button type="submit" class="btn btn-outline-info text-info w-100">Search</button>
+  </div>
+</form>
 
 <table class="table table-striped table-bordered">
   <thead class="table-primary">
@@ -14,9 +32,9 @@
       <th>Email</th>
       <th>DOB</th>
       <th>Metadata</th>
-      {% if user.is_authenticated %}
+
       <th>Actions</th>
-      {% endif %}
+
     </tr>
   </thead>
   <tbody>
@@ -28,19 +46,32 @@
       <td>{{ student.email }}</td>
       <td>{{ student.dob }}</td>
       <td>
-        {% for sm in student.studentmetadata_set.all %}
-          <div><strong>{{ sm.metadata.key }}:</strong> {{ sm.metadata.value }}{% if sm.notes %} <em>({{ sm.notes }})</em>{% endif %}</div>
-        {% empty %}
+        {% if student.metadata.exists %}
+          {% for meta in student.metadata.all %}
+            <div> 📌 <strong>{{ meta.key }}:</strong> {{ meta.value }}</div>
+          {% endfor %}
+        {% else %}
           <span class="text-muted">No metadata</span>
-        {% endfor %}
+        {% endif %}
       </td>
-      {% if user.is_authenticated %}
       <td>
-        <a href="{% url 'student_detail' student.id %}" class="btn btn-info btn-sm">View</a>
-        <a href="{% url 'student_edit' student.id %}" class="btn btn-warning btn-sm">Edit</a>
-        <a href="{% url 'student_delete' student.id %}" class="btn btn-danger btn-sm">Delete</a>
+
+        <a href="{% url 'student_detail' student.id %}" class="text-decoration-none btn btn-outline-info btn-sm text-info">View</a>
+        {% if user.is_authenticated %}
+
+
+    <a href="{% url 'student_edit' student.id %}"  class="text-decoration-none btn btn-outline-info btn-sm text-success ">Edit</a>
+
+        <button type="button" class="btn btn-outline-danger  text-danger btn-sm"
+        data-bs-toggle="modal"
+        data-bs-target="#deleteModal"
+        data-item-id="{{ student.pk }}"
+        data-item-name="{{ student.first_name }} {{ student.last_name }}"
+        data-delete-url="{% url 'student_delete' student.pk %}">
+    Delete
+</button>
+{% endif %}
       </td>
-      {% endif %}
     </tr>
     {% empty %}
     <tr>
@@ -54,13 +85,15 @@
 <nav>
   <ul class="pagination justify-content-center">
     {% if page_obj.has_previous %}
-      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}{% if request.GET.meta_key %}meta_key={{ request.GET.meta_key }}&{% endif %}{% if request.GET.meta_val %}meta_val={{ request.GET.meta_val }}&{% endif %}page={{ page_obj.previous_page_number }}">Previous</a></li>
     {% endif %}
     <li class="page-item disabled"><span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span></li>
     {% if page_obj.has_next %}
-      <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+      <li class="page-item"><a class="page-link" href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}{% if request.GET.meta_key %}meta_key={{ request.GET.meta_key }}&{% endif %}{% if request.GET.meta_val %}meta_val={{ request.GET.meta_val }}&{% endif %}page={{ page_obj.next_page_number }}">Next</a></li>
     {% endif %}
   </ul>
 </nav>
 {% endif %}
+
+{% include "includes/base_delete_modal.html" %}
 {% endblock %}
