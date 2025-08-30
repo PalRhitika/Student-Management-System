@@ -92,16 +92,16 @@ python manage.py loaddata seed.json
 ![Students List](screenshots/studentlist.PNG)
 
 ### Student Details Page
-![Students Details](screenshots/student_details.PNG)
+![Students Details](screenshots/studentdetails.PNG)
 
 ### Student Add Page
 ![Students Add](screenshots/studentadd.PNG)
 
 ### Student Update Page
-![Students Update](screenshots/student_update.PNG)
+![Students Update](screenshots/studentupdate.PNG)
 
 ### Student Delete Modal
-![Students Update](screenshots/studentdeletemodal.PNG)
+![Students Delete](screenshots/studentdeletmodal.PNG)
 
 ### Course List Page
 ![Course Detail](screenshots/courselist.PNG)
