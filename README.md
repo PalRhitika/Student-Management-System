@@ -107,3 +107,16 @@ python manage.py loaddata seed.json
 ![Course Detail](screenshots/courselist.PNG)
 
 
+##  User Experience
+
+- **Guest Users:** Can view lists and details of Students, Courses, Instructors, and Enrollments without logging in.
+- **Superuser:** Can create, update, delete, and manage all entities including Metadata.
+- **Navigation:** Use the top menu or dashboard cards to access Students, Courses, Instructors, and Enrollments.
+- **Search & Pagination:** Quickly filter and browse records in list views.
+- **Charts:** Visualize academic performance through charts in the Student detail pages.
+
+## 💡 Learning Experience / Reflection
+
+Working on this assessment was a highly valuable experience. I got to deepen my understanding of **Django’s MVT architecture, class-based views, template inheritance, and custom template filters**. Implementing CRUD operations, search, pagination, and chart visualizations allowed me to combine backend logic with frontend presentation effectively.
+
+A big thank you to **NSDevil** for providing this assessment. I got a chance to  explore topics and areas I was previously unfamiliar with from which I learned a lot while building a practical, user-friendly Student Management System.
