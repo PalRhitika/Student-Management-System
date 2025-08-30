@@ -1,8 +1,9 @@
 # Student Management System
 
 A Django-based **Student Management System** developed as part of an **assessment task**.
-This system manages **Students, Courses, Instructors, Enrollments, and Metadata**.
-It includes  CRUD functionalities, basic auth, search with pagination and charts.
+This system manages **Students, Courses, Instructors, Enrollments, and Metadata**, following Django’s **Model–View–Template (MVT) architecture**.
+It includes CRUD functionalities, basic authentication, search with pagination, and chart visualizations.
+
 
 
 ## Features
