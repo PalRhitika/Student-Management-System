@@ -83,3 +83,27 @@ Load anytime using:
 python manage.py loaddata seed.json
 ```
 
+## Some Glimpse of the System
+
+### Login Page
+![Login Page](screenshots/login.PNG)
+
+### Students List Page
+![Students List](screenshots/studentlist.PNG)
+
+### Student Details Page
+![Students Details](screenshots/student_details.PNG)
+
+### Student Add Page
+![Students Add](screenshots/studentadd.PNG)
+
+### Student Update Page
+![Students Update](screenshots/student_update.PNG)
+
+### Student Delete Modal
+![Students Update](screenshots/studentdeletemodal.PNG)
+
+### Course List Page
+![Course Detail](screenshots/courselist.PNG)
+
+
