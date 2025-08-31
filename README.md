@@ -83,6 +83,7 @@ Load anytime using:
 ```bash
 python manage.py loaddata seed.json
 ```
+---
 
 ## Some Glimpse of the System
 
@@ -112,6 +113,7 @@ python manage.py loaddata seed.json
 ![Course Detail](screenshots/courselist.PNG)
 
 
+---
 ##  User Experience
 
 - **Guest Users:** Can view lists and details of Students, Courses, Instructors, and Enrollments without logging in.
@@ -119,6 +121,24 @@ python manage.py loaddata seed.json
 - **Navigation:** Use the top menu or homepage cards to access Students, Courses, Instructors, and Enrollments.
 - **Search & Pagination:** Quickly filter and browse records in list views.
 - **Charts:** Visualize academic performance through charts in the Student detail pages.
+
+---
+
+##  Running Tests
+This project includes unit tests to ensure core functionality:
+- __str__ methods return expected values
+- unique email validation
+- Guest users can view lists and detail pages
+- Only logged-in superusers can create, update, and delete
+- Metadata attaches correctly
+- ManyToMany Relationship and Foreign Key Constraints
+
+After running the server, in next terminal run :
+```bash
+python manage.py test
+```
+ ### Test Passing
+![Running Tests](screenshots/testpass.PNG)
 
 ## 💡 Learning Experience / Reflection
 
