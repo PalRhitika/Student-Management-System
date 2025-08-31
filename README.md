@@ -65,7 +65,7 @@ It includes CRUD functionalities, basic authentication, search with pagination, 
    python manage.py runserver
    ```
 
-8. Visit: `http://127.0.0.1:8000/` oor `http://localhost:8000/`
+8. Visit: `http://127.0.0.1:8000/` or `http://localhost:8000/`
 
 **Note: This system allows guest users to view lists and details of Students, Courses, Instructors, and Enrollments. However, only the superuser can create, update, or delete records and manage Metadata. Please log in with your superuser credentials to perform administrative actions.**
 
